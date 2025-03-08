@@ -30,7 +30,7 @@ jobs:
 
       - name: Plan Terraform changes
         run: terraform plan
-        env: ${{ secrets.GCP_SA_KEY }}
+        env: $HOME/gcp-key.json
 
       - name: Apply Terraform changes
         run: terraform apply -auto-approve
