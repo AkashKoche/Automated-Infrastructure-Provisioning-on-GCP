@@ -6,7 +6,7 @@ terraform {
      }
    }
   backend "gcs" {
-    bucket = "my-terraform-state-bucket"
+    bucket = "aka-terraform-bucket"
     prefix = "comput-engine/vm"
   }
 }
