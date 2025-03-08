@@ -22,6 +22,7 @@ jobs:
           GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
         run: |
           echo "$GOOGLE_CREDENTIALS" > gcp-credentials.json
+          echo "cat gcp-credentials.json | tr -s '\n' ' '" >> gcp-credentials.json
           export GOOGLE_APPLICATION_CREDENTIALS=$gcp-credentials.json
 
       - name: Initialize Terraform
