@@ -17,24 +17,16 @@ jobs:
         with:
           terraform_version: 1.5.7
 
-      - name: Verify GCP JSON Key File
+      - name: Authenticate to GCP using Base64-Decoded Credentials
         run: |
-          if [ -s "/home/runner/.gcp-key.json" ]; then
-            echo "✅ JSON key file exists and is not empty!"
-          else
-            echo "❌ ERROR: JSON key file is empty or missing!"
-            exit 1
-          fi 
-
-      - name: Authenticate GCP
-        run: |
-          echo "${{ secrets.GCP_SA_KEY }}" | base64 > $HOME/.gcp-key.json
-          gcloud auth activate-service-account --key-file=$HOME/.gcp-key.json
-          gcloud config set project ${{secrets.GCP_PROJECT_ID }}
+          echo "${{ secrets.GCP_SA_KEY }}" | base64 --decode > /home/runner/.gcp-key.json
+          ls -lah /home/runner/.gcp-key.json           
+          cat /home/runner/.gcp-key.json | jq .       
+          gcloud auth activate-service-account --key-file=/home/runner/.gcp-key.json           
+          gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
 
         env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }} 
       - name: Initialize Terraform
         run: terraform init
         env:
