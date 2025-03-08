@@ -9,11 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - id: auth
-        uses: google-github-action/auth@v1
-        with:
-          credentials_json: ${{secrets.GCP_CREDENTIALS }}
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -35,7 +30,7 @@ jobs:
 
       - name: Plan Terraform changes
         run: terraform plan
-        env: $HOME/gcp-key.json
+        credentials_json: ${{secrets.GCP_SA_KEY }}
 
       - name: Apply Terraform changes
         run: terraform apply -auto-approve
