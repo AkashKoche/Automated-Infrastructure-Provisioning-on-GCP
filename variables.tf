@@ -17,3 +17,9 @@ variable "machine_type" {
   type = string
   default = "e2-micro"
 }
+
+variable "gcp_credentials_file" {
+  description = "GCP Credential"
+  type = string
+  default = "`/.gcp-key.json"
+}
