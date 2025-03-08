@@ -21,5 +21,5 @@ variable "machine_type" {
 variable "gcp_credentials_file" {
   description = "GCP Credential"
   type = string
-  default = "`/.gcp-key.json"
+  default = "~/.gcp-key.json"
 }
