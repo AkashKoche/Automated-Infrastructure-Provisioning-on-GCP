@@ -28,9 +28,6 @@ jobs:
       - name: Initialize Terraform
         run: terraform init
 
-      - name: Credentials
-        run: gcloud auth activate-service-account --key-file=$HOME/gcp-key.json
-
       - name: Plan Terraform changes
         run: terraform plan
 
