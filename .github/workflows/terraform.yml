@@ -17,6 +17,9 @@ jobs:
         with:
           terraform_version: 1.5.7
 
+      - name: Initialize Terraform
+        run terraform init
+
       - name: Authenticate GCP
         run:
           echo "${{ secrets.GCP_SA_KEY }}" > $HOME/gcp-key.json
@@ -25,12 +28,8 @@ jobs:
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
 
-      - name: Initialize Terraform
-        run: terraform init
-
       - name: Plan Terraform changes
         run: terraform plan
-        credentials_json: ${{secrets.GCP_SA_KEY }}
 
       - name: Apply Terraform changes
         run: terraform apply -auto-approve
