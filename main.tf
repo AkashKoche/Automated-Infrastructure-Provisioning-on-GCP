@@ -11,7 +11,7 @@ provider "google" {
   project     = var.project
   region      = var.region
   zone        = var.zone
-  credentials = file(~/.gcp-key.json)
+  credentials = file(/.gcp-key.json)
 }
 
 resource "google_compute_firewall" "allow_http" {
