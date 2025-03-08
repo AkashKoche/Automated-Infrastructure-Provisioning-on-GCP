@@ -20,10 +20,6 @@ jobs:
       - name: Authenticate GCP
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
-        run: |
-          gcloud auth application-default login
-          echo "$GOOGLE_CREDENTIALS" > gcp-credentials.json
-          export GOOGLE_APPLICATION_CREDENTIALS=$gcp-credentials.json
 
       - name: Initialize Terraform
         run: terraform init
