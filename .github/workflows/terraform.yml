@@ -18,7 +18,7 @@ jobs:
           terraform_version: 1.5.7
 
       - name: Initialize Terraform
-        run terraform init
+        run: terraform init
 
       - name: Authenticate GCP
         run:
