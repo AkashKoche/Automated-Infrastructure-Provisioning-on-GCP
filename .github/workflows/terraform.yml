@@ -17,6 +17,15 @@ jobs:
         with:
           terraform_version: 1.5.7
 
+      - name: Debug GCP_SA_KEY Secret
+        run: |
+          if [[ -z "${{ secrets.GCP_SA_KEY }}" ]]; then
+            echo "ERROR: GCP_SA_KEY is empty or not set!"
+            exit 1
+          else
+            echo "GCP_SA_KEY is set. Length: $(echo -n "${{ secrets.GCP_SA_KEY }}" | wc - c) characters"
+          fi
+
       - name: Authenticate GCP
         run: |
           echo "${{ secrets.GCP_SA_KEY }}" | base64 > $HOME/gcp-key.json
