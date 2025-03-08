@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - id: auth
+        uses: google-github-action/auth@v1
+        with:
+          credentials_json: ${{secrets.GCP_CREDENTIALS }}
+
       - name: Checkout code
         uses: actions/checkout@v4
 
