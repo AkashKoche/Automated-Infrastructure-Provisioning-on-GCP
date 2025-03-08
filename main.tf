@@ -8,9 +8,9 @@ terraform {
  }
 
 provider "google" {
-  project = var.project
-  region  = var.region
-  zone    = var.zone
+  project     = var.project
+  region      = var.region
+  zone        = var.zone
 }
 
 resource "google_compute_firewall" "allow_http" {
