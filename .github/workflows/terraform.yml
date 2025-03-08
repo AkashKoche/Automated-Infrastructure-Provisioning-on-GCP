@@ -17,14 +17,14 @@ jobs:
         with:
           terraform_version: 1.5.7
 
-      - name: Debug GCP_SA_KEY Secret
+      - name: Verify GCP JSON Key File
         run: |
-          if [[ -z "${{ secrets.GCP_SA_KEY }}" ]]; then
-            echo "ERROR: GCP_SA_KEY is empty or not set!"
-            exit 1
+          if [ -s "/home/runner/.gcp-key.json" ]; then
+            echo "✅ JSON key file exists and is not empty!"
           else
-            echo "GCP_SA_KEY is set. Length: $(echo -n "${{ secrets.GCP_SA_KEY }}" | wc - c) characters"
-          fi
+            echo "❌ ERROR: JSON key file is empty or missing!"
+            exit 1
+          fi 
 
       - name: Authenticate GCP
         run: |
