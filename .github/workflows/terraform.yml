@@ -20,9 +20,7 @@ jobs:
       - name: Initialize Terraform
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
-        run: terraform init &&\
-             -var="gcp_credentials=${{ secrets.GCP_SA_KEY }}" &&\
-             -var-file=terraform.tfvars
+        run: terraform init
 
       - name: Plan Terraform
         env:
