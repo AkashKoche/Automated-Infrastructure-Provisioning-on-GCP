@@ -21,7 +21,6 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
         run: terraform init &&\
-             -var="project=${{ secrets.GCP_PROJECT }}" &&\
              -var="gcp_credentials=${{ secrets.GCP_SA_KEY }}" &&\
              -var-file=terraform.tfvars
 
@@ -29,7 +28,6 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
         run: terraform plan &&\
-             -var="project=${{ secrets.GCP_PROJECT }}" &&\
              -var="gcp_credentials=${{ secrets.GCP_SA_KEY }}" &&\
              -var-file=terraform.tfvars
 
@@ -37,6 +35,5 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
         run: terraform apply -auto-approve &&\
-             -var="project=${{ secrets.GCP_PROJECT }}" &&\
              -var="gcp_credentials=${{ secrets.GCP_SA_KEY }}" &&\
              -var-file=terraform.tfvars
